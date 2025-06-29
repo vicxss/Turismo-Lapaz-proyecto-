@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('LaPaz.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+header {
+  background-color: #cc11f1;
+  color: rgb(9, 188, 243);
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.carrusel-container {
+  width: 900px;
+  height: 400px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background-color: white;
+}
+
+.carrusel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+.item {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenido {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.contenido img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  border-right: 2px solid #fff;
+}
+
+.descripcion {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.descripcion h2 a {
+  color: #f0f8ff;
+  text-decoration: none;
+}
+
+.descripcion h2 a:hover {
+  text-decoration: underline;
+}
+
+.navegacion {
+  margin-top: 1rem;
+}
+
+.navegacion button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background-color: #cc11f1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navegacion button:hover {
+  background-color: #a00dc0;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: white;
+  background-color: rgba(0,0,0,0.3);
+  padding: 0.4rem 0.7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+}
+
+.flecha:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.flecha.izquierda {
+  left: 10px;
+}
+
+.flecha.derecha {
+  right: 10px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Turismo en La Paz - Bolivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>Turismo en La Paz, Bolivia</header>
+
+  <div class="carrusel-container">
+    <div class="flecha izquierda" onclick="anterior()">&#8592;</div>
+    <div class="flecha derecha" onclick="siguiente()">&#8594;</div>
+
+    <div class="carrusel" id="carrusel">
+      <div class="item" data-destino="altiplano">
+        <div class="contenido">
+          <img src="Altiplano.jpg" alt="Altiplano y cerros">
+          <div class="descripcion">
+            <h2><a href="altiplano.html">Altiplano</a></h2>
+            <p>Tihuanaco, Lago Titicaca, Nevado Illimani...</p>
+          </div>
+        </div>
+      </div>
+      <div class="item" data-destino="selva">
+        <div class="contenido">
+          <img src="Selva.jpg" alt="Yungas">
+          <div class="descripcion">
+            <h2><a href="selva.html">Selva</a></h2>
+            <p>Coroico, Los Yungas, Rurrenabaque...</p>
+          </div>
+        </div>
+      </div>
+      <div class="item" data-destino="urbano">
+        <div class="contenido">
+          <img src="Ciudad.jpg" alt="La Paz urbana">
+          <div class="descripcion">
+            <h2><a href="urbano.html">Ciudad</a></h2>
+            <p>Teleférico, Valle de la Luna, Chuquiago Marka...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navegacion">
+    <button onclick="irA(0)">Altiplano</button>
+    <button onclick="irA(1)">Selva</button>
+    <button onclick="irA(2)">Urbano</button>
+  </nav>
+
+  <script>
+    const carrusel = document.getElementById("carrusel");
+    const total = document.querySelectorAll(".item").length;
+    let index = 0;
+
+    function actualizarCarrusel() {
+      carrusel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function irA(i) {
+      index = i;
+      actualizarCarrusel();
+      reiniciarAutoScroll();
+    }
+
+    function siguiente() {
+      index = (index + 1) % total;
+      actualizarCarrusel();
+      reiniciarAutoScroll();
+    }
+
+    function anterior() {
+      index = (index - 1 + total) % total;
+      actualizarCarrusel();
+      reiniciarAutoScroll();
+    }
+
+    function autoScroll() {
+      siguiente();
+    }
+
+    let intervalo = setInterval(autoScroll, 5000);
+
+    function reiniciarAutoScroll() {
+      clearInterval(intervalo);
+      intervalo = setInterval(autoScroll, 5000);
+    }
+  </script>
+</body>
+</html>
+
