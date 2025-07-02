@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Turismo en La Paz - Bolivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Estilos/estilos.css" />
+</head>
+<body>
+  <div class="fondo-overlay"></div>
+
+  <header class="encabezado">
+    <h1>Turismo en La Paz, Bolivia</h1>
+  </header>
+
+  <nav class="menu-hamburguesa">
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon" aria-label="Abrir menú">☰</label>
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Html/altiplano.html">Altiplano</a></li>
+      <li><a href="Html/selva.html">Selva</a></li>
+      <li><a href="Html/urbano.html">Ciudad</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="carrusel-container">
+      <button class="flecha izquierda" onclick="anterior()" aria-label="Imagen anterior">&#8592;</button>
+      <button class="flecha derecha" onclick="siguiente()" aria-label="Imagen siguiente">&#8594;</button>
+
+      <div class="carrusel" id="carrusel">
+        <div class="item active">
+          <a href="Html/altiplano.html">
+            <div class="contenido">
+              <img src="Multimedia/Fotos/Altiplano.jpg" alt="Paisaje del altiplano boliviano" />
+              <div class="descripcion">
+                <h2>Altiplano</h2>
+                <p>Disfruta de parajes por encima de los 3000 m, rodeado de montañas milenarias y cielos infinitos.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="item">
+          <a href="Html/selva.html">
+            <div class="contenido">
+              <img src="Multimedia/Fotos/Selva.jpg" alt="Selva de los Yungas en La Paz" />
+              <div class="descripcion">
+                <h2>Selva</h2>
+                <p>Sumérgete en los Yungas: bosques vibrantes, ríos secretos y la magia de la biodiversidad.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="item">
+          <a href="Html/urbano.html">
+            <div class="contenido">
+              <img src="Multimedia/Fotos/Ciudad.jpg" alt="Ciudad de La Paz con teleféricos y montañas" />
+              <div class="descripcion">
+                <h2>Ciudad</h2>
+                <p>Explora La Paz: teleféricos panorámicos, arquitectura colonial y el misterioso Valle de la Luna.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="formulario-contacto" id="contacto">
+      <h2>Contáctanos</h2>
+      <form onsubmit="alert('Gracias por tu interés'); return false;">
+        <label for="pais">¿De qué país nos visitas?</label>
+        <input type="text" id="pais" name="pais" placeholder="Ej. Argentina, Perú, México" required />
+
+        <label for="interes">¿Estás interesado en visitar La Paz?</label>
+        <select id="interes" name="interes">
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+          <option value="talvez">Tal vez</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Turismo en La Paz. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.item');
+      let index = 0;
+      let intervalo;
+
+      function actualizarCarrusel() {
+        items.forEach((item, i) => {
+          item.classList.toggle('active', i === index);
+        });
+      }
+
+      function siguiente() {
+        index = (index + 1) % items.length;
+        actualizarCarrusel();
+        reiniciarAutoScroll();
+      }
+
+      function anterior() {
+        index = (index - 1 + items.length) % items.length;
+        actualizarCarrusel();
+        reiniciarAutoScroll();
+      }
+
+      function autoScroll() {
+        siguiente();
+      }
+
+      function reiniciarAutoScroll() {
+        clearInterval(intervalo);
+        intervalo = setInterval(autoScroll, 5000);
+      }
+
+      actualizarCarrusel();
+      reiniciarAutoScroll();
+
+      window.siguiente = siguiente;
+      window.anterior = anterior;
+    });
+  </script>
+</body>
+</html>
