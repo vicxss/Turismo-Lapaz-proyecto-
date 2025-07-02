@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo en el Altiplano</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f2f2f2; }
+        header { background-color: #004d4d; color: white; padding: 20px; text-align: center; font-size: 28px; }
+        .seccion { flex: 1; display: flex; align-items: center; justify-content: space-around; padding: 40px; border-bottom: 1px solid #ddd; background-color: #fff; }
+        .seccion:last-child { border-bottom: none; }
+        .slider { position: relative; width: 40%; max-width: 400px; }
+        .slider img { width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none; }
+        .slider img.active { display: block; }
+        .texto { width: 50%; padding: 20px; }
+        h2 { color: #006666; margin-bottom: 15px; font-size: 1.8rem; }
+        p { color: #333; line-height: 1.6; }
+        /* Fondos alternos */
+        .seccion:nth-child(odd) { background-color: #f8f9fa; }
+        .seccion:nth-child(even) { background-color: #e9ecef; }
+    </style>
+</head>
+<body>
+    <header>Altiplano Boliviano</header>
+
+    <!-- Tiwanaku -->
+    <div class="seccion">
+        <div class="slider" data-path="../imagenes/tiwanaku" data-count="5"></div>
+        <div class="texto">
+            <h2>Tiwanaku</h2>
+            <p>Centro ceremonial preincaico y patrimonio cultural de Bolivia, uno de los sitios arqueológicos más importantes de Sudamérica.</p>
+        </div>
+    </div>
+
+    <!-- Lago Titicaca -->
+    <div class="seccion">
+        <div class="texto">
+            <h2>Lago Titicaca</h2>
+            <p>El lago navegable más alto del mundo, compartido con Perú, con aguas cristalinas y paisajes únicos.</p>
+        </div>
+        <div class="slider" data-path="../imagenes/lagotiticaca" data-count="4"></div>
+    </div>
+
+    <!-- Isla del Sol -->
+    <div class="seccion">
+        <div class="slider" data-path="../imagenes/isladelsol" data-count="4"></div>
+        <div class="texto">
+            <h2>Isla del Sol</h2>
+            <p>Isla sagrada en el Lago Titicaca, famosa por sus ruinas incas y vistas al lago más alto del mundo.</p>
+        </div>
+    </div>
+
+    <!-- Nevado Illimani -->
+    <div class="seccion">
+        <div class="texto">
+            <h2>Nevado Illimani</h2>
+            <p>Montaña emblemática de La Paz con más de 6400 metros, ideal para los amantes del andinismo y la fotografía.</p>
+        </div>
+        <div class="slider" data-path="../imagenes/illimani" data-count="4"></div>
+    </div>
+    <div class="volver-inicio">
+  <a href="../index.html">← Volver al inicio</a>
+</div>
+
+    <script>
+        document.querySelectorAll('.slider').forEach(slider => {
+            const path = slider.dataset.path;
+            const count = parseInt(slider.dataset.count);
+            let idx = 1;
+            // Crear img tags
+            for (let i = 1; i <= count; i++) {
+                const img = document.createElement('img');
+                img.src = path + i + '.jpg';
+                img.alt = path + ' ' + i;
+                if (i === 1) img.classList.add('active');
+                slider.appendChild(img);
+            }
+            const imgs = slider.querySelectorAll('img');
+            // Auto-scroll
+            setInterval(() => {
+                imgs[idx-1].classList.remove('active');
+                idx = idx % count + 1;
+                imgs[idx-1].classList.add('active');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo Urbano en La Paz</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f0f4f8; }
+        header { background-color: #1a237e; color: white; padding: 20px; text-align: center; font-size: 28px; }
+        .seccion { flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 40px; border-bottom: 1px solid #ccc; }
+        .seccion:last-child { border-bottom: none; }
+        .slider { position: relative; width: 40%; max-width: 400px; }
+        .slider img { width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none; }
+        .slider img.active { display: block; }
+        .texto { width: 55%; padding: 20px; }
+        h2 { color: #0d47a1; margin-bottom: 15px; font-size: 1.8rem; }
+        p { color: #333; line-height: 1.6; }
+        .seccion:nth-child(odd) { background-color: #e3f2fd; }
+        .seccion:nth-child(even) { background-color: #bbdefb; }
+        a { text-decoration: none; color: #1a237e; margin: 20px; display: inline-block; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header>Turismo Urbano en La Paz</header>
+
+    <!-- Calle Jaén -->
+    <div class="seccion">
+        <div class="slider" data-path="../Multimedia/Fotos/callejaen" data-count="4"></div>
+        <div class="texto">
+            <h2>Calle Jaén</h2>
+            <p>Pasea por la emblemática Calle Jaén, con su arquitectura colonial y museos llenos de historia paceña.</p>
+        </div>
+    </div>
+
+    <!-- Plaza Murillo -->
+    <div class="seccion">
+        <div class="texto">
+            <h2>Plaza Murillo</h2>
+            <p>Visita la Plaza Murillo, centro político de Bolivia, rodeada del Palacio de Gobierno y la Catedral Metropolitana.</p>
+        </div>
+        <div class="slider" data-path="../Multimedia/Fotos/plaza murillo" data-count="4"></div>
+    </div>
+
+    <!-- Teleférico -->
+    <div class="seccion">
+        <div class="slider" data-path="../Multimedia/Fotos/teleferico" data-count="4"></div>
+        <div class="texto">
+            <h2>Teleférico</h2>
+            <p>Disfruta de vistas panorámicas de la ciudad desde el teleférico, una experiencia única de transporte urbano.</p>
+        </div>
+    </div>
+
+    <!-- Valle de la Luna -->
+    <div class="seccion">
+        <div class="texto">
+            <h2>Valle de la Luna</h2>
+            <p>Explora el Valle de la Luna, con sus formaciones rocosas surrealistas y senderos naturales cerca de la ciudad.</p>
+        </div>
+        <div class="slider" data-path="../Multimedia/Fotos/valle de la luna" data-count="4"></div>
+    </div>
+
+    <p><a href="../index.html">⬅ Volver a inicio</a></p>
+
+    <script>
+        document.querySelectorAll('.slider').forEach(slider => {
+            const path = slider.dataset.path;
+            const count = parseInt(slider.dataset.count);
+            let idx = 1;
+            for (let i = 1; i <= count; i++) {
+                const img = document.createElement('img');
+                img.src = `${path}${i}.jpg`;
+                img.alt = `${path.split('/').pop()} ${i}`;
+                if (i === 1) img.classList.add('active');
+                slider.appendChild(img);
+            }
+            const imgs = slider.querySelectorAll('img');
+            setInterval(() => {
+                imgs[idx-1].classList.remove('active');
+                idx = idx % count + 1;
+                imgs[idx-1].classList.add('active');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

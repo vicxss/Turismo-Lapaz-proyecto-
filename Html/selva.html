@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo en la Selva</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #e9f7ef; }
+        header { background-color: #2e7d32; color: white; padding: 20px; text-align: center; font-size: 28px; }
+        .seccion { flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 40px; border-bottom: 1px solid #ccc; }
+        .seccion:last-child { border-bottom: none; }
+        .slider { position: relative; width: 40%; max-width: 400px; }
+        .slider img { width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none; }
+        .slider img.active { display: block; }
+        .texto { width: 55%; padding: 20px; }
+        h2 { color: #1b5e20; margin-bottom: 15px; font-size: 1.8rem; }
+        p { color: #333; line-height: 1.6; }
+        .seccion:nth-child(odd) { background-color: #f1f8e9; }
+        .seccion:nth-child(even) { background-color: #e8f5e9; }
+        a { text-decoration: none; color: #2e7d32; margin: 20px; display: inline-block; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header>Yungas y Selva Tropical</header>
+
+    <!-- Camino de la Muerte -->
+    <div class="seccion">
+        <div class="slider" data-path="../Multimedia/Fotos/caminodelamuerte" data-count="4"></div>
+        <div class="texto">
+            <h2>Camino de la Muerte</h2>
+            <p>Recorre una ruta histórica llena de emoción y paisajes vertiginosos, considerada la carretera más peligrosa del mundo.</p>
+        </div>
+    </div>
+
+    <!-- Parque Nacional Cotapata -->
+    <div class="seccion">
+        <div class="texto">
+            <h2>Parque Nacional Cotapata</h2>
+            <p>Descubre un santuario de bosques nubosos y quebradas vírgenes en los Yungas, hogar de orquídeas y aves exóticas.</p>
+        </div>
+        <div class="slider" data-path="../Multimedia/Fotos/parquenacionaldecotapata" data-count="4"></div>
+    </div>
+
+    <!-- Coroico -->
+    <div class="seccion">
+        <div class="slider" data-path="../Multimedia/Fotos/coroico" data-count="4"></div>
+        <div class="texto">
+            <h2>Coroico</h2>
+            <p>Disfruta del encanto colonial y los miradores naturales en esta joya de los Yungas, con clima cálido y vistas inolvidables.</p>
+        </div>
+    </div>
+
+    <p><a href="../index.html">⬅ Volver a inicio</a></p>
+
+    <script>
+        document.querySelectorAll('.slider').forEach(slider => {
+            const path = slider.dataset.path;
+            const count = parseInt(slider.dataset.count);
+            let idx = 1;
+            // Crear las imágenes del slider
+            for (let i = 1; i <= count; i++) {
+                const img = document.createElement('img');
+                img.src = `${path}${i}.jpg`;
+                img.alt = path.split('/').pop() + ' ' + i;
+                if (i === 1) img.classList.add('active');
+                slider.appendChild(img);
+            }
+            const imgs = slider.querySelectorAll('img');
+            // Auto-scroll cada 3 segundos
+            setInterval(() => {
+                imgs[idx-1].classList.remove('active');
+                idx = idx % count + 1;
+                imgs[idx-1].classList.add('active');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
+
