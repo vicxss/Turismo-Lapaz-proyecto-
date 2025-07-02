@@ -1,8 +1,0 @@
-/*Colores utilizados: verde (#009B4D), amarillo mandarina (#FFCC00), marfil (#FAF5E9)*/
-div {
-    background-color: #e0f7fa;
-    background-image: url('texture.png');
-    background-repeat: repeat-x;
-    background-position: top left;
-    background-size: 50px 50px;
-}
